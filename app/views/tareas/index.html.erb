@@ -1,0 +1,19 @@
+<div class="container">
+  <h5>Listado de Tareas</h5>
+
+
+  <br>
+  <div class="row">
+    <% @tareas.each do |tarea| %>
+    <div class="col-sm-3">
+      <div class="card text-white bg-warning">
+        <img class="card-img-top" src="<%= tarea.imagen %>" alt="Card image cap" >
+        <div class="card-body">
+          <h5 class="card-title"><%= tarea.titulo %></h5>
+        </div>    
+      </div>
+      <br>
+    </div>
+    <% end %>
+  </div>
+</div>
