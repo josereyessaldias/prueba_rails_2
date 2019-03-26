@@ -4,6 +4,9 @@ class TareasController < ApplicationController
   	@tareas =  Tarea.all
   end
 
+  def show
+  	@tarea = Tarea.find(params[:id])
+  end
 
 
 

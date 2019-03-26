@@ -9,7 +9,19 @@
       <div class="card text-white bg-warning">
         <img class="card-img-top" src="<%= tarea.imagen %>" alt="Card image cap" >
         <div class="card-body">
-          <h5 class="card-title"><%= tarea.titulo %></h5>
+          <h5 class="card-title"><%= link_to tarea.titulo, tarea_path(tarea) %></h5>
+          <% if user_signed_in? %>
+            <% if Work.where(user_id: current_user.id, tarea_id: tarea.id, complete: true).first %>
+              <span>Tarea completa! <%= link_to '¿Faltó algo?', work_path(tarea), method: :patch, :class => 'btn btn-sm btn-success' %></span>
+            <% elsif Work.where(user_id: current_user.id, tarea_id: tarea.id, complete: false).first %>
+              <span>Tarea pendiente <%= link_to 'Completar Tarea!', work_f_path(tarea), method: :patch, :class => 'btn btn-sm btn-danger' %></span>
+            <% else %>
+              <span>Tarea pendiente <%= link_to 'Completar Tarea!', works_path(tarea), method: :post, :class => 'btn btn-sm btn-danger' %></span>
+            <% end  %>
+          <% end %>
+
+
+          
         </div>    
       </div>
       <br>

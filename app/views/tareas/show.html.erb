@@ -1,0 +1,53 @@
+<div class="container">
+  <h5>Detalle de Tarea</h5>
+
+
+  <br>
+  
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card text-white bg-warning">
+        <img class="card-img-top" src="<%= @tarea.imagen %>" alt="Card image cap" >
+        <div class="card-body">
+          <h5 class="card-title"><%= @tarea.titulo %></h5>
+          <p><%= @tarea.descripcion %></p>
+
+
+          
+        </div>    
+      </div>
+      <br>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card text-white bg-warning">
+        <br>
+        <h5 class="card-title">Primeros 5 en lograr la tarea:</h5>
+        <div class="card-body">
+          <ol>
+            <% Work.where(complete:true, tarea_id: @tarea.id).order(:updated_at).each do |w| %>
+              <li><img src="<%= w.user.photo %>" width="60px"> <%= w.user.name %><br> completado el <%= w.updated_at.strftime("%d-%m-%Y") %> </li><br>
+
+            <% end %>
+          </ol>
+
+        </div>
+
+    </div>
+    
+  </div>
+  <div class="col-sm-8">
+    <h5>Tarea Completada por (en orden alfabético):</h5>
+      <ul>
+        <%  lista = [] %>
+        <% @tarea.work.where(complete:true).each do |work| %>
+          <% lista << work.user.name %>
+        <% end %>
+        <% lista.sort.each do |i| %>
+          <li><%= i %></li>
+        <% end %>
+        
+      </ul>
+
+  </div>
+</div>

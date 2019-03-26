@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+Work.destroy_all
 Tarea.destroy_all
+
 9.times do |i|
 	Tarea.create(titulo: "Tarea #{i+1}", imagen: "http://noticias.universia.cl/net/images/cultura/f/fi/fie/fiestas-patrias-en-chile.jpg", descripcion: "descripción de tarea")
 end

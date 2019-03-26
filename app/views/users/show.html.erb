@@ -1,0 +1,10 @@
+<div class="container">
+	<br>
+	<h4>Mis tareas completadas</h4>
+	<br>
+	<ul>
+		<% @user.work.where(complete: true).each do |work| %>
+			<li><%= work.tarea.titulo %></li>
+		<% end %>
+	</ul>
+</div>
